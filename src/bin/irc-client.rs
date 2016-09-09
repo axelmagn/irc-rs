@@ -23,7 +23,7 @@ fn main() {
     //    variable should be.  There are a few things that are *not* type inferred though: function
     //    signatures and static variables.  This is a conscious design decision made in order to
     //    support more maintainable code.
-    let args = env::args();
+    let mut args = env::args();
     let host: Option<String> = args.nth(1);
 
     // Check if there really is an argument
