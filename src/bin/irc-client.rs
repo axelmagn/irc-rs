@@ -24,7 +24,13 @@ fn main() {
     //    signatures and static variables.  This is a conscious design decision made in order to
     //    support more maintainable code.
     let args = env::args();
-    let host: String = args.nth(1);
+    let host: Option<String> = args.nth(1);
+
+    // Check if there really is an argument
+    let host: String = match host {
+        Some(h) => h,
+        None => panic!("No host was specified!"),
+    };
 
     // for now, just print the host and exit
     println!("HOST:\t{}", host);
