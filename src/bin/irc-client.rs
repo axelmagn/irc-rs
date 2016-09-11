@@ -1,23 +1,41 @@
 //! The IRC Client
+extern crate docopt;
+extern crate rustc_serialize;
 
 // Use the `env` module from the static library
-use std::env;
+use docopt::Docopt;
+use std::io::BufReader;
 use std::io::prelude::*;
 use std::io;
-use std::io::BufReader;
 
 // declare a usage string in static memory.
 const USAGE: &'static str = "Usage:
-    irc-client <HOST>
+    irc-client [options] <host>
 
 Connect to an irc host.
+
+Options:
+    -h --help       Show this help message
 ";
+
+/// Program Arguments
+#[derive(RustcDecodable, Debug)]
+struct Args {
+    arg_host: String,
+}
+
 
 const PROMPT: &'static str = "> ";
 
 fn main() {
     // parse arguments to retrieve host.
-    let host = env::args().nth(1).expect(USAGE);
+
+    // parse args
+    let args: Args = Docopt::new(USAGE)
+                             .and_then(|d| d.decode())
+                             .unwrap_or_else(|e| e.exit());
+
+    let host = args.arg_host;
     println!("HOST:\t{}", host);
 
     // echo repl
