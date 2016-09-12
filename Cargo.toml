@@ -1,6 +1,6 @@
 [package]
 name = "irc"
-version = "0.3.0"
+version = "1.0.0"
 authors = ["Axel Magnuson <axelmagn@gmail.com>"]
 
 [dependencies]
@@ -8,3 +8,4 @@ log = "0.3"
 env_logger = "0.3"
 docopt = "0.6"
 rustc-serialize = "0.3"
+uuid = { version = "0.3", features = ["rustc-serialize", "v4"] }
