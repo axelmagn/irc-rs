@@ -1,6 +1,6 @@
 [package]
 name = "irc"
-version = "1.0.0"
+version = "1.0.1"
 authors = ["Axel Magnuson <axelmagn@gmail.com>"]
 
 [dependencies]
